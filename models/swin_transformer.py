@@ -256,6 +256,7 @@ class SwinTransformerBlock(nn.Module):
         attn_windows = attn_windows.view(-1, self.window_size, self.window_size, C)
         shifted_x = window_reverse(attn_windows, self.window_size, H, W)  # B H' W' C
 
+        # todo
         # reverse cyclic shift
         if self.shift_size > 0:
             x = torch.roll(shifted_x, shifts=(self.shift_size, self.shift_size), dims=(1, 2))
